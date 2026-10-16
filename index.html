@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INTERFACE 2026 | Festival hudby, digitálního umění a technologií</title>
+  <meta name="description"
+    content="Třídenní mezinárodní festival propojující pokročilou elektronickou hudbu, audiovizuální performance, imerzivní světelné instalace a kreativní kódování na Výstavišti Praha.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function () {
+      var savedTheme = localStorage.getItem('interface_theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+</head>
+
+<body>
+
+  <!-- Desktop Header -->
+  <header class="site-header" id="top-nav">
+    <div class="header-inner container">
+      <a href="#hero" class="brand-logo" id="brand-logo-link">
+        <span class="logo-line-group">
+          <span class="logo-wordmark">INTERFACE</span>
+          <span class="logo-year">2026</span>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Hlavní navigace">
+        <ul class="nav-list">
+          <li><a href="#program" class="nav-link active" data-section="program">Program</a></li>
+          <li><a href="#lineup" class="nav-link" data-section="lineup">Line-up</a></li>
+          <li><a href="#stages" class="nav-link" data-section="stages">Scény</a></li>
+          <li><a href="#info" class="nav-link" data-section="info">Info</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="btn-my-schedule" id="btn-open-my-schedule" aria-label="Zobrazit můj program">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <span>Můj program</span>
+          <span class="schedule-counter" id="schedule-badge">0</span>
+        </button>
+        <button type="button" class="btn-theme-toggle" id="theme-toggle-btn" aria-label="Přepnout tmavý / světlý režim"
+          title="Přepnout režim zobrazení (světlý / tmavý)">
+          <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+        <a href="#tickets" class="btn btn-primary btn-sm">Vstupenky</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Floating Bottom Navigation -->
+  <nav class="mobile-bottom-bar" aria-label="Mobilní navigace">
+    <a href="#program" class="m-nav-item active" data-section="program">
+      <svg class="m-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
+      </svg>
+      <span>Program</span>
+    </a>
+    <a href="#lineup" class="m-nav-item" data-section="lineup">
+      <svg class="m-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+        <circle cx="9" cy="7" r="4"></circle>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+      </svg>
+      <span>Line-up</span>
+    </a>
+    <a href="#stages" class="m-nav-item" data-section="stages">
+      <svg class="m-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+        <line x1="8" y1="2" x2="8" y2="18"></line>
+        <line x1="16" y1="6" x2="16" y2="22"></line>
+      </svg>
+      <span>Mapa</span>
+    </a>
+    <button type="button" class="m-nav-item m-nav-btn" id="m-btn-my-schedule" aria-label="Můj program">
+      <svg class="m-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <polygon
+          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+        </polygon>
+      </svg>
+      <span>Výběr</span>
+      <span class="m-schedule-counter" id="m-schedule-badge">0</span>
+    </button>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO SECTION — Asymmetric Editorial -->
+    <section class="hero-section" id="hero">
+      <canvas id="hero-sound-canvas" aria-hidden="true" data-parallax-speed="0.2"></canvas>
+
+      <!-- Decorative grain overlay -->
+      <div class="hero-grain" aria-hidden="true"></div>
+
+      <!-- Floating editorial elements -->
+      <div class="hero-deco-num" aria-hidden="true" data-parallax-speed="-0.28">IV</div>
+      <div class="hero-deco-line" aria-hidden="true" data-parallax-speed="0.12"></div>
+
+      <div class="container hero-layout">
+
+        <!-- Left column — main text -->
+        <div class="hero-text-col">
+          <div class="hero-eyebrow">
+            <span class="eyebrow-tag">Praha — Výstaviště Holešovice</span>
+            <span class="eyebrow-sep">/</span>
+            <span class="eyebrow-tag">11.–13. září 2026</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="title-line title-italic">Fúze</span>
+            <span class="title-line title-bold">zvuku,</span>
+            <span class="title-line title-gradient">světla</span>
+            <span class="title-line title-bold">&amp; kódu.</span>
+          </h1>
+
+          <p class="hero-lead">
+            Třídenní mezinárodní festival propojující pokročilou elektronickou hudbu, audiovizuální imerzivní instalace,
+            modulární laboratoře a živý algorave.
+          </p>
+
+          <div class="hero-cta-row">
+            <a href="#program" class="btn btn-primary btn-lg" id="hero-cta-program">
+              Harmonogram
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#lineup" class="btn btn-ghost-border btn-lg">Line-up</a>
+          </div>
+        </div>
+
+        <!-- Right column — stats + sound toy -->
+        <div class="hero-right-col">
+          <!-- Minimalist Asymmetric Stats (Pure Monochrome, Editorial Aesthetic) -->
+          <div class="hero-asymmetric-stats" id="hero-stats-group">
+            <div class="stat-glass-card stat-card-1">
+              <span class="stat-card-kicker">01 / Dny programu</span>
+              <div class="stat-card-number">03</div>
+              <div class="stat-card-label">11.–13. září 2026</div>
+              <div class="stat-card-caption">Pátek • Sobota • Neděle</div>
+            </div>
+
+            <div class="stat-glass-card stat-card-2">
+              <span class="stat-card-kicker">02 / Scény</span>
+              <div class="stat-card-number">03</div>
+              <div class="stat-card-label">Výstaviště Holešovice</div>
+              <div class="stat-card-caption">Pavilon B • Spirála • Pavilon D</div>
+            </div>
+
+            <div class="stat-glass-card stat-card-3">
+              <span class="stat-card-kicker">03 / Účinkující</span>
+              <div class="stat-card-number">60+</div>
+              <div class="stat-card-label">Mezinárodní line-up</div>
+              <div class="stat-card-caption">Elektronika, AV art &amp; algorave</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom scroll indicator -->
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span class="scroll-text">Scroll</span>
+        <span class="scroll-line"></span>
+      </div>
+    </section>
+    <!-- Marquee ticker strip -->
+    <div class="marquee-strip" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-item">Interface 2026<span class="marquee-dot"></span></span>
+        <span class="marquee-item">Praha Výstaviště Holešovice<span class="marquee-dot"></span></span>
+        <span class="marquee-item">11.–13. září 2026<span class="marquee-dot"></span></span>
+        <span class="marquee-item">60 umělců<span class="marquee-dot"></span></span>
+        <span class="marquee-item">3 scény<span class="marquee-dot"></span></span>
+        <span class="marquee-item">Sound &amp; Live Stage<span class="marquee-dot"></span></span>
+        <span class="marquee-item">AV &amp; Light Dome<span class="marquee-dot"></span></span>
+        <span class="marquee-item">Modular &amp; Code Lab<span class="marquee-dot"></span></span>
+        <span class="marquee-item">Algorave<span class="marquee-dot"></span></span>
+        <span class="marquee-item">Světelné instalace<span class="marquee-dot"></span></span>
+        <span class="marquee-item">4. ročník festivalu<span class="marquee-dot"></span></span>
+        <!-- duplicate for seamless loop -->
+        <span class="marquee-item">Interface 2026<span class="marquee-dot"></span></span>
+        <span class="marquee-item">Praha Výstaviště Holešovice<span class="marquee-dot"></span></span>
+        <span class="marquee-item">11.–13. září 2026<span class="marquee-dot"></span></span>
+        <span class="marquee-item">60 umělců<span class="marquee-dot"></span></span>
+        <span class="marquee-item">3 scény<span class="marquee-dot"></span></span>
+        <span class="marquee-item">Sound &amp; Live Stage<span class="marquee-dot"></span></span>
+        <span class="marquee-item">AV &amp; Light Dome<span class="marquee-dot"></span></span>
+        <span class="marquee-item">Modular &amp; Code Lab<span class="marquee-dot"></span></span>
+        <span class="marquee-item">Algorave<span class="marquee-dot"></span></span>
+        <span class="marquee-item">Světelné instalace<span class="marquee-dot"></span></span>
+        <span class="marquee-item">4. ročník festivalu<span class="marquee-dot"></span></span>
+      </div>
+    </div>
+
+    <!-- SECTION 1: PROGRAM -->
+    <section class="section program-section" id="program">
+      <div class="container">
+        <div class="section-header asymmetric">
+          <div class="section-header-text">
+            <span class="section-kicker">— 01 / Program</span>
+            <h2 class="section-title">Harmonogram<br><em>festivalu</em></h2>
+          </div>
+          <div class="section-header-aside">
+            <p class="section-subtitle">Filtrujte podle dnů, pódií i typu a sestavte si svůj víkend.</p>
+            <div class="scenario-helper-badge" title="Tento panel podporuje Scénář 1">
+              <svg class="scenario-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="12 8 8 12 12 16 12 8"></polygon>
+              </svg>
+              <span>Scénář 1: Páteční večer na Sound Stage</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="program-controls-card">
+          <div class="day-tabs" role="tablist" aria-label="Výběr festivalového dne">
+            <button type="button" class="day-tab active" data-day="1" role="tab" aria-selected="true" id="tab-day-1">
+              <span class="day-num">Den 01</span>
+              <span class="day-name">Pátek</span>
+              <span class="day-date">11. září</span>
+            </button>
+            <button type="button" class="day-tab" data-day="2" role="tab" aria-selected="false" id="tab-day-2">
+              <span class="day-num">Den 02</span>
+              <span class="day-name">Sobota</span>
+              <span class="day-date">12. září</span>
+            </button>
+            <button type="button" class="day-tab" data-day="3" role="tab" aria-selected="false" id="tab-day-3">
+              <span class="day-num">Den 03</span>
+              <span class="day-name">Neděle</span>
+              <span class="day-date">13. září</span>
+            </button>
+          </div>
+
+          <div class="filter-row">
+            <div class="filter-group">
+              <label class="filter-label" for="stage-filter">Scéna</label>
+              <select id="stage-filter" class="form-select">
+                <option value="all">Všechny scény</option>
+                <option value="stage_sound">Sound &amp; Live Stage</option>
+                <option value="stage_av">Audiovisual &amp; Light Dome</option>
+                <option value="stage_lab">Creative Code &amp; Lab</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label" for="type-filter">Typ programu</label>
+              <select id="type-filter" class="form-select">
+                <option value="all">Všechny typy</option>
+                <option value="concert">Živé koncerty</option>
+                <option value="av">Audiovizuální show</option>
+                <option value="workshop">Workshopy</option>
+                <option value="algorave">Algorave &amp; live coding</option>
+              </select>
+            </div>
+
+            <div class="filter-group search-group">
+              <label class="filter-label" for="program-search">Hledat</label>
+              <div class="search-input-wrap">
+                <input type="search" id="program-search" class="form-input" placeholder="Interpret, téma, tag...">
+                <button type="button" id="clear-program-search" class="btn-clear-search" aria-label="Vymazat"
+                  style="display:none;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-status-bar">
+            <div class="filter-status-left">
+              <div class="filter-results-count">
+                Zobrazeno <span id="filtered-items-count" class="badge-count">0</span> položek
+              </div>
+              <div class="quick-filter-chips">
+                <button type="button" class="chip-filter" data-stage="stage_sound" data-day="1">Pátek @ Sound
+                  Stage</button>
+                <button type="button" class="chip-filter" data-type="workshop">Workshopy</button>
+                <button type="button" class="chip-filter chip-reset" id="reset-filters-btn">Reset</button>
+              </div>
+            </div>
+
+            <!-- View Switcher: Timetable Grid vs Timeline List -->
+            <div class="view-mode-toggle" role="radiogroup" aria-label="Způsob zobrazení harmonogramu">
+              <button type="button" class="btn-view-toggle active" data-view="grid" id="view-mode-grid"
+                title="Rozvrh scén a hodin">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="3" y1="9" x2="21" y2="9"></line>
+                  <line x1="3" y1="15" x2="21" y2="15"></line>
+                  <line x1="9" y1="3" x2="9" y2="21"></line>
+                  <line x1="15" y1="3" x2="15" y2="21"></line>
+                </svg>
+                <span>Rozvrh scén</span>
+              </button>
+              <button type="button" class="btn-view-toggle" data-view="list" id="view-mode-list"
+                title="Časový seznam položek">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="8" y1="6" x2="21" y2="6"></line>
+                  <line x1="8" y1="12" x2="21" y2="12"></line>
+                  <line x1="8" y1="18" x2="21" y2="18"></line>
+                  <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                  <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                  <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                </svg>
+                <span>Seznam</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="schedule-timeline" id="schedule-container" aria-live="polite">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: LINE-UP (ORGANICKÁ PAVUČINA ŽÁNRŮ A UMĚLCŮ) -->
+    <section class="section lineup-section" id="lineup">
+      <div class="container">
+        <div class="section-header asymmetric">
+          <div class="section-header-text">
+            <span class="section-kicker">— 02 / Umělci</span>
+            <h2 class="section-title">Line-up<br><em>&amp; pavučina žánrů</em></h2>
+          </div>
+          <div class="section-header-aside">
+            <p class="section-subtitle">Čtyři žánrové pilíře festivalu. <strong>Klikněte na bublinu pro prozkoumání
+                (Explore)</strong> a rozbalení asymetrické pavučiny umělců.</p>
+            <div class="scenario-helper-badge" title="Tento panel podporuje Scénář 2">
+              <svg class="scenario-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="12 8 8 12 12 16 12 8"></polygon>
+              </svg>
+              <span>Scénář 2: Vyhledání interpreta &amp; poslech ukázky</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lineup-search-row">
+          <input type="search" id="performer-search" class="form-input"
+            placeholder="Rychlé vyhledání umělce nebo žánru...">
+        </div>
+
+        <!-- Open, unboxed canvas space for genre bubbles & unfolding spiderweb -->
+        <div class="lineup-unconstrained-canvas" id="performers-container">
+          <!-- Dynamically populated by JS: either 4 floating bubbles or unfolded 360° brain web -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee ticker strip 2 -->
+    <div class="marquee-strip" aria-hidden="true">
+      <div class="marquee-track" style="animation-direction: reverse; animation-duration: 36s;">
+        <span class="marquee-item">Audiovisual Dome<span class="marquee-dot"></span></span>
+        <span class="marquee-item">Modular Synths<span class="marquee-dot"></span></span>
+        <span class="marquee-item">Live Coding &amp; Algorave<span class="marquee-dot"></span></span>
+        <span class="marquee-item">Kinetické lasery<span class="marquee-dot"></span></span>
+        <span class="marquee-item">Křižíkova fontána<span class="marquee-dot"></span></span>
+        <span class="marquee-item">Generativní grafika<span class="marquee-dot"></span></span>
+        <span class="marquee-item">TouchDesigner &amp; SuperCollider<span class="marquee-dot"></span></span>
+        <span class="marquee-item">360° Zvukový prostor<span class="marquee-dot"></span></span>
+        <span class="marquee-item">Interaktivní světelný park<span class="marquee-dot"></span></span>
+        <span class="marquee-item">Workshopové laboratoře<span class="marquee-dot"></span></span>
+      </div>
+    </div>
+
+    <!-- SECTION 3: SCÉNY & AREÁLOVÝ PLÁN (ARCHITEKTONICKÝ PLÁN) -->
+    <section class="section stages-section" id="stages">
+      <div class="container stages-header-container">
+        <div class="section-header asymmetric">
+          <div class="section-header-text">
+            <span class="section-kicker">— 03 / Areál &amp; Scény</span>
+            <h2 class="section-title">Scény<br><em>&amp; mapa areálu</em></h2>
+          </div>
+          <div class="section-header-aside">
+            <p class="section-subtitle">Architektonický plán Výstaviště Praha Holešovice. <strong>Najeďte myší na
+                budovy</strong> pro zobrazení přehledu a nejbližšího programu.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full-bleed background map canvas -->
+      <div class="stages-map-viewport">
+        <svg viewBox="0 0 1300 680" class="stages-full-map-svg" id="interactive-map"
+          preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <!-- Blueprint pattern -->
+            <pattern id="arch-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="40" y2="0" stroke="currentColor" stroke-opacity="0.04" stroke-width="1"></line>
+              <line x1="0" y1="0" x2="0" y2="40" stroke="currentColor" stroke-opacity="0.04" stroke-width="1"></line>
+              <circle cx="20" cy="20" r="0.8" fill="currentColor" fill-opacity="0.08"></circle>
+            </pattern>
+            <linearGradient id="laserBeamGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2dd4bf" stop-opacity="0.6"></stop>
+              <stop offset="50%" stop-color="#6366f1" stop-opacity="0.3"></stop>
+              <stop offset="100%" stop-color="#2dd4bf" stop-opacity="0"></stop>
+            </linearGradient>
+            <radialGradient id="fountainGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#c8a96e" stop-opacity="0.22"></stop>
+              <stop offset="70%" stop-color="#c8a96e" stop-opacity="0.04"></stop>
+              <stop offset="100%" stop-color="#c8a96e" stop-opacity="0"></stop>
+            </radialGradient>
+          </defs>
+
+          <!-- Background architectural canvas fill -->
+          <rect width="100%" height="100%" class="map-bg-fill"></rect>
+          <rect width="100%" height="100%" fill="url(#arch-grid)"></rect>
+
+          <!-- Architectural Boundary & Outer Park Geometry -->
+          <path d="M 40,30 L 1260,30 L 1260,650 L 40,650 Z" fill="none" stroke="currentColor" stroke-opacity="0.08"
+            stroke-width="1" stroke-dasharray="6,6"></path>
+
+          <!-- Park Flora & Landscaping (Stromovka Nature Zone) -->
+          <path d="M 740,30 Q 940,60 1240,200 L 1240,640 L 720,640 Q 690,340 740,30 Z" class="map-park-terrain"></path>
+
+          <!-- Park Tree Canopy Dots (Architectural vector trees) -->
+          <g class="map-foliage-trees" opacity="0.3">
+            <circle cx="820" cy="80" r="14"></circle>
+            <circle cx="890" cy="95" r="18"></circle>
+            <circle cx="1140" cy="110" r="16"></circle>
+            <circle cx="1190" cy="160" r="22"></circle>
+            <circle cx="1120" cy="220" r="19"></circle>
+            <circle cx="1180" cy="280" r="24"></circle>
+            <circle cx="1110" cy="350" r="20"></circle>
+            <circle cx="1170" cy="420" r="24"></circle>
+            <circle cx="1100" cy="500" r="18"></circle>
+            <circle cx="1160" cy="570" r="22"></circle>
+          </g>
+
+          <!-- Pedestrian Walkway Promenades with Generous Breathing Room -->
+          <g class="map-walkways" fill="none" stroke="currentColor" stroke-opacity="0.08" stroke-width="24"
+            stroke-linecap="round">
+            <path d="M 160,580 L 160,260 L 560,260"></path>
+            <path d="M 560,260 L 560,540 L 830,540"></path>
+            <path d="M 560,260 L 950,260"></path>
+          </g>
+          <g class="map-walkways-guidelines" fill="none" stroke="currentColor" stroke-opacity="0.16" stroke-width="1"
+            stroke-dasharray="3,5">
+            <path d="M 160,580 L 160,260 L 560,260 L 560,540 L 830,540"></path>
+            <path d="M 560,260 L 950,260"></path>
+          </g>
+
+          <!-- Central Fountain Ring (Křižíkova fontána) -->
+          <circle cx="560" cy="440" r="64" fill="url(#fountainGlow)"></circle>
+          <circle cx="560" cy="440" r="50" fill="none" stroke="currentColor" stroke-opacity="0.15" stroke-width="1.5">
+          </circle>
+          <circle cx="560" cy="440" r="32" fill="none" stroke="#c8a96e" stroke-opacity="0.35" stroke-width="1.2"
+            stroke-dasharray="4,4"></circle>
+          <circle cx="560" cy="440" r="12" fill="none" stroke="#c8a96e" stroke-opacity="0.6" stroke-width="1.5">
+          </circle>
+          <circle cx="560" cy="440" r="3" fill="#c8a96e"></circle>
+          <text x="560" y="444" text-anchor="middle" class="map-label-subtle">Křižíkova fontána</text>
+
+          <!-- Laser projections from fountain to park -->
+          <line x1="560" y1="440" x2="940" y2="170" stroke="url(#laserBeamGrad)" stroke-width="2" stroke-dasharray="8,6"
+            opacity="0.7"></line>
+          <line x1="560" y1="440" x2="1080" y2="300" stroke="url(#laserBeamGrad)" stroke-width="1.5"
+            stroke-dasharray="10,4" opacity="0.6"></line>
+          <line x1="560" y1="440" x2="950" y2="450" stroke="url(#laserBeamGrad)" stroke-width="2" stroke-dasharray="9,5"
+            opacity="0.65"></line>
+
+          <!-- =========================================================
+               STAGE 1: Křižíkův pavilon B (Sound & Live Stage)
+               ========================================================= -->
+          <g class="map-interactive-zone" data-stage-id="stage_sound" id="zone-stage-sound" tabindex="0" role="button"
+            aria-label="Sound &amp; Live Stage — Křižíkův pavilon B">
+            <!-- Architectural footprint -->
+            <rect x="70" y="70" width="250" height="150" rx="12" class="zone-building-base"></rect>
+            <!-- Interior acoustic baffles and hall outline -->
+            <rect x="85" y="85" width="220" height="120" rx="8" class="zone-building-interior"></rect>
+            <!-- Main LED wall / Stage platform -->
+            <rect x="98" y="98" width="80" height="22" rx="4" class="zone-sub-feature sound-accent"></rect>
+            <text x="138" y="113" text-anchor="middle" class="zone-feature-text">LED STAGE 360°</text>
+            <!-- FOH mixing desk -->
+            <rect x="235" y="145" width="42" height="18" rx="3" class="zone-sub-feature"></rect>
+            <text x="256" y="157" text-anchor="middle" class="zone-feature-sub">FOH MIX</text>
+
+            <!-- Pin Beacon -->
+            <g transform="translate(295, 95)">
+              <circle cx="0" cy="0" r="14" class="zone-beacon-steady sound"></circle>
+              <text x="0" y="4" text-anchor="middle" class="zone-beacon-num">01</text>
+            </g>
+
+            <!-- Zone Label -->
+            <text x="95" y="185" class="zone-title-text">Sound &amp; Live Stage</text>
+            <text x="95" y="200" class="zone-meta-text">Pavilon B • Kapacita 900 • Koncertní hala</text>
+          </g>
+
+          <!-- =========================================================
+               STAGE 3: Křižíkův pavilon D (Creative Code & Modular Lab)
+               ========================================================= -->
+          <g class="map-interactive-zone" data-stage-id="stage_lab" id="zone-stage-lab" tabindex="0" role="button"
+            aria-label="Creative Code &amp; Modular Lab — Pavilon D">
+            <!-- Architectural footprint -->
+            <rect x="420" y="70" width="250" height="150" rx="12" class="zone-building-base"></rect>
+            <rect x="435" y="85" width="220" height="120" rx="8" class="zone-building-interior"></rect>
+            <!-- Modular synth bench tables -->
+            <rect x="450" y="98" width="75" height="22" rx="4" class="zone-sub-feature lab-accent"></rect>
+            <text x="487" y="113" text-anchor="middle" class="zone-feature-text">MODULAR LAB</text>
+            <!-- Algorave coding arena -->
+            <rect x="545" y="98" width="85" height="22" rx="4" class="zone-sub-feature"></rect>
+            <text x="587" y="113" text-anchor="middle" class="zone-feature-sub">ALGORAVE</text>
+
+            <!-- Pin Beacon -->
+            <g transform="translate(645, 95)">
+              <circle cx="0" cy="0" r="14" class="zone-beacon-steady lab"></circle>
+              <text x="0" y="4" text-anchor="middle" class="zone-beacon-num">03</text>
+            </g>
+
+            <!-- Zone Label -->
+            <text x="445" y="185" class="zone-title-text">Modular &amp; Code Lab</text>
+            <text x="445" y="200" class="zone-meta-text">Pavilon D • Kapacita 350 • Workshopy &amp; DIY</text>
+          </g>
+
+          <!-- =========================================================
+               STAGE 2: Nová Spirála (Audiovisual & Light Dome)
+               ========================================================= -->
+          <g class="map-interactive-zone" data-stage-id="stage_av" id="zone-stage-av" tabindex="0" role="button"
+            aria-label="Audiovisual &amp; Light Dome — Nová Spirála">
+            <!-- Concentric circular amphitheatre -->
+            <circle cx="210" cy="440" r="82" class="zone-building-base"></circle>
+            <circle cx="210" cy="440" r="66" class="zone-building-interior"></circle>
+            <circle cx="210" cy="440" r="46" class="zone-building-interior" stroke-dasharray="5,4"></circle>
+            <!-- Central Immersion Stage Platform -->
+            <circle cx="210" cy="440" r="24" class="zone-sub-feature av-accent"></circle>
+            <text x="210" y="444" text-anchor="middle" class="zone-feature-text">360° AV</text>
+
+            <!-- Pin Beacon -->
+            <g transform="translate(265, 385)">
+              <circle cx="0" cy="0" r="14" class="zone-beacon-steady av"></circle>
+              <text x="0" y="4" text-anchor="middle" class="zone-beacon-num">02</text>
+            </g>
+
+            <!-- Zone Label -->
+            <text x="210" y="498" text-anchor="middle" class="zone-title-text">AV &amp; Light Dome</text>
+            <text x="210" y="513" text-anchor="middle" class="zone-meta-text">Nová Spirála • Kapacita 500 • Imerzivní
+              kupole</text>
+          </g>
+
+          <!-- =========================================================
+               POI 4: Světelný park & Laserový tunel
+               ========================================================= -->
+          <g class="map-interactive-zone" data-stage-id="poi_park" id="zone-poi-park" tabindex="0" role="button"
+            aria-label="Světelný park &amp; Laserový tunel">
+            <rect x="800" y="90" width="250" height="140" rx="12" class="zone-building-base park-zone"></rect>
+            <text x="925" y="145" text-anchor="middle" class="zone-title-text">Světelný park &amp; lasery</text>
+            <text x="925" y="165" text-anchor="middle" class="zone-meta-text">Křižíkova fontána a park •
+              20:30–02:00</text>
+            <text x="925" y="184" text-anchor="middle" class="zone-feature-sub">Imerzivní světelné a kinetické
+              sochy</text>
+
+            <!-- Pin Beacon -->
+            <g transform="translate(1015, 115)">
+              <circle cx="0" cy="0" r="14" class="zone-beacon-steady gold"></circle>
+              <text x="0" y="4" text-anchor="middle" class="zone-beacon-num">★</text>
+            </g>
+          </g>
+
+          <!-- POI 5: Gastro & Chillout Village -->
+          <g class="map-static-poi" transform="translate(800, 420)">
+            <rect x="0" y="0" width="200" height="56" rx="8" class="poi-static-box"></rect>
+            <text x="100" y="24" text-anchor="middle" class="poi-title">Gastro &amp; Chill Village</text>
+            <text x="100" y="42" text-anchor="middle" class="poi-sub">Bary, výběrová káva &amp; bio food trucks</text>
+          </g>
+
+          <!-- POI 6: Hlavní Vstup & Akreditace -->
+          <g class="map-static-poi" transform="translate(70, 580)">
+            <rect x="0" y="0" width="200" height="50" rx="8" class="poi-static-box"></rect>
+            <text x="100" y="22" text-anchor="middle" class="poi-title">Hlavní Vstup &amp; Akreditace</text>
+            <text x="100" y="38" text-anchor="middle" class="poi-sub">RFID pásky &amp; festivalová pokladna</text>
+          </g>
+
+          <!-- Coordinate markings & Scale Bar -->
+          <g class="map-blueprint-decor" opacity="0.45">
+            <text x="60" y="48" class="blueprint-mono">50°06'22"N • 14°25'49"E</text>
+            <text x="1240" y="48" text-anchor="end" class="blueprint-mono">AREÁL VÝSTAVIŠTĚ PRAHA</text>
+            <!-- Compass Rose -->
+            <g transform="translate(1200, 95)">
+              <circle cx="0" cy="0" r="16" fill="none" stroke="currentColor" stroke-width="1"></circle>
+              <line x1="0" y1="-16" x2="0" y2="16" stroke="currentColor" stroke-width="1"></line>
+              <line x1="-16" y1="0" x2="16" y2="0" stroke="currentColor" stroke-width="1"></line>
+              <polygon points="0,-14 -3,-5 3,-5" fill="currentColor"></polygon>
+              <text x="0" y="-19" text-anchor="middle" font-size="8" font-family="DM Mono, monospace"
+                font-weight="700">N</text>
+            </g>
+          </g>
+        </svg>
+
+        <!-- Floating Dynamic Hover HUD with Directional Pointer Arrow -->
+        <div class="stage-hover-hud" id="stage-hover-hud" aria-hidden="true">
+          <div class="hud-pointer-arrow" id="hud-pointer-arrow"></div>
+          <div class="hud-top-bar">
+            <span class="hud-stage-badge" id="hud-stage-badge">SCÉNA 01</span>
+            <span class="hud-capacity-badge" id="hud-capacity-badge">Kapacita: 900</span>
+          </div>
+          <h3 class="hud-stage-title" id="hud-stage-title">Sound &amp; Live Stage</h3>
+          <div class="hud-stage-location" id="hud-stage-location">Křižíkův pavilon B</div>
+          <p class="hud-stage-desc" id="hud-stage-desc">Centrální hudební aréna festivalu pro živé koncerty
+            mezinárodních headlinerů.</p>
+
+          <div class="hud-preview-block">
+            <div class="hud-preview-kicker">Program vybraného dne:</div>
+            <div class="hud-preview-list" id="hud-preview-list">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <div class="hud-footer">
+            <button type="button" class="btn btn-primary btn-sm" id="hud-filter-btn">
+              Filtrovat scénu v programu →
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: PRAKTICKÉ INFORMACE -->
+    <section class="section info-section" id="info">
+      <div class="container">
+        <div class="section-header asymmetric">
+          <div class="section-header-text">
+            <span class="section-kicker">— 04 / Info</span>
+            <h2 class="section-title">Praktické<br><em>informace</em></h2>
+          </div>
+          <div class="section-header-aside">
+            <p class="section-subtitle">Vše, co potřebujete vědět před příchodem na festival.</p>
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="4" y="3" width="16" height="16" rx="2"></rect>
+                <line x1="4" y1="11" x2="20" y2="11"></line>
+                <line x1="12" y1="3" x2="12" y2="11"></line>
+                <path d="m8 19-2 3"></path>
+                <path d="m18 22-2-3"></path>
+                <circle cx="8" cy="15" r="1"></circle>
+                <circle cx="16" cy="15" r="1"></circle>
+              </svg>
+            </div>
+            <h3>Doprava &amp; parkování</h3>
+            <p>Tramvaje 6, 12, 17 do zastávky <strong>Výstaviště</strong>. Metro C (Nádraží Holešovice) je vzdáleno 6
+              minut chůze. Doporučujeme MHD, parkovací kapacity jsou omezeny.</p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path
+                  d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z">
+                </path>
+                <path d="M13 5v2"></path>
+                <path d="M13 17v2"></path>
+                <path d="M13 11v2"></path>
+              </svg>
+            </div>
+            <h3>Akreditace &amp; páskování</h3>
+            <p>Pokladny a páskovací stany jsou otevřeny v pátek od 14:00, v sobotu a neděli od 12:00. Obdržíte RFID
+              náramek pro bezhotovostní platby.</p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                <line x1="2" y1="10" x2="22" y2="10"></line>
+              </svg>
+            </div>
+            <h3>Cashless systém</h3>
+            <p>Celý festival je 100% bezhotovostní. Na všech barech zaplatíte kartou, mobilem nebo festivalovým čipem,
+              který lze dobít v infostáncích.</p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="4.5" r="2.5"></circle>
+                <path d="M6 9h12"></path>
+                <path d="M10 9v5l-4 4"></path>
+                <path d="M14 9v5l4 4"></path>
+              </svg>
+            </div>
+            <h3>Přístupnost &amp; Safe Space</h3>
+            <p>Všechny pavilony jsou bezbariérové. V areálu funguje proškolený Safe Space tým a zdravotnická služba
+              centrálně u fontány.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: VSTUPENKY -->
+    <section class="section tickets-section" id="tickets">
+      <div class="container">
+        <div class="tickets-header">
+          <span class="section-kicker">— 05 / Vstupenky</span>
+          <h2 class="tickets-title">Zajistěte si<br><em>vstup</em></h2>
+          <p class="tickets-subtitle">Kapacita vnitřních pavilonů je limitována pro zachování komfortu a akustiky.</p>
+        </div>
+
+        <div class="ticket-cards-row">
+          <div class="ticket-card">
+            <span class="ticket-tag">Základní</span>
+            <h3 class="ticket-name">3-Day Festival Pass</h3>
+            <div class="ticket-price">1 890 <span class="price-currency">Kč</span></div>
+            <ul class="ticket-features">
+              <li>Vstup do všech 3 pavilonů</li>
+              <li>Noční Algorave &amp; koncerty</li>
+              <li>Světelné parkové instalace</li>
+            </ul>
+            <button type="button" class="btn btn-outline btn-block buy-ticket-trigger"
+              data-ticket="3-Day Pass">Vybrat</button>
+          </div>
+
+          <div class="ticket-card featured">
+            <span class="ticket-tag highlight">Doporučeno</span>
+            <h3 class="ticket-name">Full Pass + Workshop Lab</h3>
+            <div class="ticket-price">2 490 <span class="price-currency">Kč</span></div>
+            <ul class="ticket-features">
+              <li>Vše z Festival Passu</li>
+              <li>Garance rezervace 2 workshopů</li>
+              <li>Vstup na masterclasses v Labu</li>
+              <li>Festivalový digitální balíček</li>
+            </ul>
+            <button type="button" class="btn btn-primary btn-block buy-ticket-trigger"
+              data-ticket="Full Pass + Workshops">Vybrat</button>
+          </div>
+
+          <div class="ticket-card">
+            <span class="ticket-tag">Student ISIC</span>
+            <h3 class="ticket-name">Student Pass</h3>
+            <div class="ticket-price">1 390 <span class="price-currency">Kč</span></div>
+            <ul class="ticket-features">
+              <li>Sleva pro studenty VŠ a SŠ</li>
+              <li>Plný přístup na 3 dny</li>
+              <li>Nutno předložit platný ISIC</li>
+            </ul>
+            <button type="button" class="btn btn-outline btn-block buy-ticket-trigger"
+              data-ticket="Student Pass">Vybrat</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Sticky Audio Player -->
+  <aside class="global-audio-player" id="global-player" aria-label="Audio přehrávač ukázky" style="display:none;">
+    <div class="container player-inner">
+      <div class="player-info">
+        <button type="button" class="player-toggle-btn" id="player-toggle-play" aria-label="Pozastavit / Spustit">
+          <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+          </svg>
+        </button>
+        <div class="player-meta">
+          <span class="player-artist" id="player-artist-name">Jon Hopkins (Live)</span>
+          <span class="player-track" id="player-track-title">Singularity (Festival Live Edit)</span>
+        </div>
+      </div>
+      <div class="player-visualizer" id="audio-visualizer" aria-hidden="true">
+        <span class="v-bar"></span><span class="v-bar"></span><span class="v-bar"></span><span class="v-bar"></span>
+        <span class="v-bar"></span><span class="v-bar"></span><span class="v-bar"></span><span class="v-bar"></span>
+        <span class="v-bar"></span><span class="v-bar"></span><span class="v-bar"></span><span class="v-bar"></span>
+      </div>
+      <div class="player-actions">
+        <span class="player-badge">Web Audio</span>
+        <button type="button" class="player-close-btn" id="player-close-btn" aria-label="Zavřít přehrávač">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MODAL: Detail vystoupení -->
+  <div class="modal-overlay" id="detail-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Zavřít">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="modal-content" id="modal-body-content"></div>
+    </div>
+  </div>
+
+  <!-- DRAWER: Můj program -->
+  <div class="modal-overlay" id="schedule-drawer" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card drawer-card">
+      <div class="drawer-header">
+        <div>
+          <h2 class="drawer-title">Můj osobní program</h2>
+          <p class="drawer-subtitle">Vámi vybraná vystoupení uložena v tomto zařízení.</p>
+        </div>
+        <button type="button" class="modal-close-btn" id="drawer-close-btn" aria-label="Zavřít">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="clash-alert-box" id="clash-alert" style="display:none;">
+        <span class="clash-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </span>
+        <div>
+          <strong>Detekován časový konflikt!</strong>
+          <p id="clash-details">Máte uložena dvě vystoupení probíhající ve stejnou dobu.</p>
+        </div>
+      </div>
+      <div class="drawer-body" id="my-schedule-items-list"></div>
+      <div class="drawer-footer">
+        <button type="button" class="btn btn-outline btn-sm" id="btn-export-calendar">Exportovat do kalendáře
+          (.ics)</button>
+        <button type="button" class="btn btn-ghost btn-sm text-danger" id="btn-clear-schedule">Vymazat vše</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">INTERFACE 2026</span>
+        <p>Festival hudby, digitálního umění a technologií.<br>Semestrální projekt předmětu Web Design.</p>
+      </div>
+      <div class="footer-meta">
+        <p>11.–13. září 2026 &bull; Výstaviště Holešovice, Praha</p>
+        <p class="footer-copy">Prototyp — Cvičení 3: Mobile-first, 2 klíčové scénáře, 5 interaktivních funkcí.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
