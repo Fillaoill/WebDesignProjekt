@@ -22,7 +22,7 @@
 
 ## 2. Účel webu
 
-### K чему web slouží
+### K čemu web slouží
 Web slouží jako ústřední multimediální, informační a nákupní platforma festivalu. Představuje hudební i umělecký line-up, poskytuje zvukové a vizuální ochutnávky vystupujících, umožňuje nákup vstupenek a slouží jako interaktivní kapesní průvodce pro návštěvníky přímo v areálu Výstaviště.
 
 ### Hlavní cíle webu
