@@ -57,7 +57,7 @@ Web slouží jako ústřední multimediální, informační a nákupní platform
 ### 4. Studenti uměleckých a technických vysokých škol (FAVU, FAMU, ČVUT, VUT...)
 * **Potřeby:** Hledají cenově dostupné vstupenky, inspiraci pro vlastní tvorbu, networking a možnost zapojit se do nočních otevřených live coding / algorave jamů.
 * **Očekávání:** Cenově zvýhodněné studentské akreditace, srozumitelná navigace, moderní a neotřelý design webu.
-* **Požadované funkce na webu:** Studentské vstupné (ISIC ověření), přehled volně přístupných zón a otevřených komunitních vystoupení.
+* **Požadované funkce na webu:** Studentské vstupné, přehled volně přístupných zón a otevřených komunitních vystoupení.
 
 ---
 
