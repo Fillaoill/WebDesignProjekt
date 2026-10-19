@@ -1,8 +1,6 @@
 # Projektová specifikace – INTERFACE 2026
 **Předmět:** Web Design  
-**Projekt:** Web fiktivního festivalu  
-**Autor:** Filip Surjomartono (obor INFO)  
-**Semestr / Ročník:** ZS 2026  
+**Projekt:** Web fiktivního festivalu
 
 ---
 
