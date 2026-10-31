@@ -1,79 +1,37 @@
-# Průběžná zpráva – Cvičení 3: UX návrh, prototyp a funkce
-**Předmět:** Web Design  
-**Projekt:** INTERFACE 2026 – Festival hudby, digitálního umění a technologií  
-**Autor:** Filip Surjomartono (obor INFO)  
-**Výstup:** Interaktivní funkční prototyp (HTML5, Vanilla CSS, JavaScript) a datová základna  
+# Průběžná zpráva – cvičení 3
 
----
+## 1. Navržené interaktivní funkce
 
-## 1. Seznam navržených interaktivních funkcí
+| Funkce | Realizace v prototypu |
+|---|---|
+| Filtrování programu | Program lze filtrovat podle dne, scény a typu programu; současně je možné vyhledávat podle názvu, interpreta, popisu i tagů. |
+| Vyhledávání účinkujících | Seznam 60 účinkujících nabízí fulltextové hledání a filtry kategorií Hudba, AV art a Kreativní kód. |
+| Osobní program | Uživatel přidá vystoupení do „Mého programu“. Výběr se uchová v `localStorage`, tedy i po obnovení stránky. |
+| Detail programu a interpreta | Z programu lze otevřít podrobný kontext položky, interpreta a jeho dalších vystoupení; profil obsahuje funkční zvukový náhled. |
+| Rezervace workshopu | Workshopy zobrazují zbývající kapacitu. Formulář provede lokální simulaci rezervace, sníží počet míst a přidá workshop do osobního programu. |
 
-Podle požadavků zadání web neslouží pouze jako statická prezentace, ale obsahuje soubor vzájemně provázaných interaktivních funkcí:
+## 2. Vazba na uživatelské potřeby
 
-### Funkce 1: Multidimenzionální filtrování a fulltextové vyhledávání v programu
-* **Popis:** Umožňuje uživateli plynule procházet 60 programových položek ve 3 dnech. Kombinuje přepínání dnů (Pátek, Sobota, Neděle), výběr scény (Sound & Live Stage, AV & Light Dome, Modular Lab), filtr podle typu akce (koncerty, AV shows, workshopy, algorave) a okamžité fulltextové vyhledávání (shoda v názvu vystoupení, jménu účinkujícího i tematických tazích).
-* **Rychlé presety:** Obsahuje jedno-klikové filtry pro nejčastější záměry (např. *Pátek večer @ Sound Stage*, *Pouze workshopy*).
+| Uživatel / potřeba ze specifikace | Funkce, která ji řeší |
+|---|---|
+| Viktorie chce zjistit páteční večerní program hlavní scény a objevit hudbu interpretů. | Filtr dne a scény, detail položky, profil interpreta a zvukový náhled. |
+| Ondřej hledá workshop modulární syntézy, potřebuje znát podmínky a rezervovat kapacitu. | Filtr typu programu, vyhledávání, detail workshopu a rezervační formulář s kapacitou. |
+| Filip se na místě potřebuje rychle orientovat v nabídce a uložit si zajímavé akce. | Mobile-first navigace, přehled scén a „Můj program“ dostupný z mobilní spodní lišty. |
+| Fanoušci line-upu chtějí hledat konkrétní jméno nebo objevovat nové umělce. | Fulltextové hledání a tematické filtrování seznamu účinkujících. |
 
-### Funkce 2: „Můj program“ (Personal Timetable Builder) s detekcí konfliktů (Clashfinder)
-* **Popis:** Každé vystoupení má tlačítko pro uložení do vlastního výběru. Stav se ukládá do `localStorage` prohlížeče (funguje bez nutnosti přihlášení a perzistuje i po obnovení stránky).
-* **Detekce časového konfliktu (Clashfinder):** Algoritmus automaticky porovnává časové intervaly uložených vystoupení v tomtéž dni. Pokud se dvě položky na různých scénách časově překrývají, systém zobrazí varovný alert s konkrétním výčtem kolidujících akcí.
-* **Export do kalendáře:** Uživatel si může svůj harmonogram vyexportovat jako standardní soubor `.ics` (kompatibilní s Apple Kalendářem, Google Kalendářem a Outlookem).
+## 3. Ověřování návrhu
 
-### Funkce 3: Integrovaný audio preview přehrávač (Web Audio API Synthesizer)
-* **Popis:** Umožňuje návštěvníkovi okamžitě si poslechnout zvukovou charakteristiku kteréhokoliv z 60 interpretů bez nutnosti opouštět stránku nebo se proklikávat na externí služby.
-* **Technické řešení:** Přehrávač využívá moderní Web Audio API a v reálném čase generuje frekvenční syntézu a arpeggia odpovídající žánru interpreta s animovaným vizualizérem zvukových vln. Funguje 100% offline bez závislosti na externích souborech.
+Prototyp byl ověřován ručním průchodem dvou klíčových scénářů z `project-specification.md`.
 
-### Funkce 4: Interaktivní mapa areálu Výstaviště Holešovice
-* **Popis:** Vektorová mapa areálu s aktivními piny pro jednotlivé scény (Křižíkův pavilon B, Nová Spirála, Pavilon D, venkovní park a gastro zónu).
-* **Propojení s programem:** Kliknutím na pódium se zobrazí detail scény, kapacita a nejbližší navazující program daného dne. Tlačítko *„Zobrazit celý program této scény“* automaticky nastaví filtr v programu a plynule na něj odscrolluje.
+1. **Viktorie — páteční hudební večer:** V části Program zvolí **Pá 11/09** a **Sound & Live Stage**, otevře detail některého vystoupení, přejde na profil interpreta a spustí zvukový náhled. Zvolenou položku přidá do „Mého programu“. Filtry, detail, náhled i uložení musí bez chyby reagovat.
+2. **Ondřej — workshop modulární syntézy:** Vyhledá výraz **modulární** nebo nastaví typ **Workshop**, otevře položku „Základy zapojování analogových modulárních syntezátorů“, vyplní jméno a e-mail a odešle rezervaci. Ověřuje se potvrzení, snížení volné kapacity a uložení položky do Mého programu.
 
-### Funkce 5: Registrace na kapacitně omezené workshopy
-* **Popis:** U položek typu Workshop systém počítá zbývající volná místa z maximální kapacity. Uživatel může přímo z rozhraní otevřít rezervační formulář, zadat své údaje a místo si rezervovat (kapacita se v reálném čase poníží a workshop se automaticky zařadí do uživatelova programu).
-
----
-
-## 2. Vazba funkcí na uživatelské potřeby
-
-| Uživatelská skupina (Persona) | Klíčová potřeba | Řešení v prototypu |
-| :--- | :--- | :--- |
-| **Fanoušek hudby (Viktorie, 24 let)** | Rychle najít večerní hudební program a zjistit, jak interpret zní. | Filtrační preset *„Pátek večer @ Sound Stage“* + integrovaný audio přehrávač skladeb. |
-| **Tvůrce / producent (Ondřej, 28 let)** | Zjistit detaily o praktickém workshopu modulární syntézy a zajistit si místo. | Filtr *„Pouze workshopy“*, zobrazení počtu volných míst a interaktivní rezervační formulář. |
-| **Festivalový návštěvník na místě (Filip, 22 let)** | Rychlá orientace v areálu a vyřešení situace, kdy hrají dva oblíbení DJs naráz. | Mobilní spodní lišta (Bottom Bar), interaktivní mapa areálu a Clashfinder v „Mém programu“. |
-
----
-
-## 3. Co bylo ověřováno a jak (Uživatelské scénáře)
-
-V prototypu bylo prakticky ověřeno projití dvou klíčových scénářů definovaných v projektové specifikaci:
-
-### Ověření Scénáře 1: Výběr pátečního večera a uložení do programu
-1. **Postup testu:** Uživatel přichází na stránku, v sekci Program klikne na rychlý filtr *„Pátek večer @ Sound Stage“*.
-2. **Výsledek:** Zobrazí se chronologicky seřazená večerní vystoupení (od 16:00 do 04:00). U vystoupení Jona Hopkinse uživatel klikne na tlačítko *Ukázka* – ve spodní části obrazovky se vysune audio přehrávač s vizualizérem a generovaným zvukem.
-3. **Akce uložení:** Uživatel klikne na tlačítko *„Přidat“*. Tlačítko změní stav na *„Uloženo“*, v záhlaví i ve spodní mobilní liště se zvedne čítač v odznaku *Můj program*.
-4. **Závěr:** Scénář proběhl hladce na mobilním i desktopovém zobrazení, uložení perzistuje v paměti prohlížeče.
-
-### Ověření Scénáře 2: Nalezení workshopu modulární syntézy a rezervace místa
-1. **Postup testu:** Uživatel zadá do vyhledávacího pole v programu slovo *„modular“* nebo klikne na filtr *Pouze workshopy*.
-2. **Výsledek:** Vyfiltruje se workshop *„Základy zapojování analogových modulárních syntezátorů“* (lektor Roman Bartoš, scéna Creative Code & Modular Lab).
-3. **Akce rezervace:** Uživatel klikne na *„Rezervovat (volno: 25/25)“*, otevře se modální dialog. Po vyplnění jména a e-mailu a odeslání se zobrazí potvrzovací toast notifikace, kapacita klesne na 24/25 a workshop se automaticky přidá do osobního harmonogramu.
-4. **Závěr:** Rezervační flow je intuitivní, uživatel má okamžitou zpětnou vazbu.
-
----
+Kontrolováno je také mobilní rozvržení od šířky 320 px, desktopové rozvržení od 720 px, ovladatelnost klávesnicí u formuláře a to, že není nutné spouštět server ani instalovat závislosti. Prototyp používá lokální export dat v `prototype/js/data.js`, aby fungoval také po otevření `prototype/index.html` přes `file://`; export odpovídá `data.json` z první iterace.
 
 ## 4. Použití AI a ověření výstupů
 
-V souladu se zadáním bylo AI využito v úvodních fázích jako asistenční nástroj pro rutinní a strukturované úkoly:
-* **Generování syntetické datové sady:** AI bylo využito pro vytvoření rozsáhlého schématu 60 účinkujících a 60 programových položek v souladu s formátem JSON.
-* **Ověření a korekce výstupů (lidská validace):**
-  * Veškerá data byla zvalidována automatickým kontrolním skriptem na integritu cizích klíčů (`stageId`, `performerIds`) a časové překryvy na stejné scéně.
-  * Anotace a popisy vystoupení byly manuálně zrevidovány, aby odpovídaly reálnému kontextu festivalů elektronické hudby a digitálního umění (Sónar, Lunchmeat) a neobsahovaly umělé generické fráze.
-  * Kód frontendu (HTML, CSS, JS) byl navržen ručně s důrazem na sémantiku, standardy přístupnosti (WCAG) a mobile-first responzivitu.
+AI byla použita jako pomoc při návrhu informační hierarchie, formulaci textů, návrhu HTML/CSS/JavaScriptu a kontrole konzistence dat. Výstupy byly ověřeny vůči `project-specification.md` a `data.json`: festival má tři dny, tři scény, 60 účinkujících a 60 programových položek. Ručně byla kontrolována funkčnost filtrů, vyhledávání, detailů, ukládání voleb a rezervačního toku. Žádná externí tvrzení ani neověřená reálná data nebyla do návrhu doplňována.
 
----
+## 5. Spuštění
 
-## 5. Pokyny ke spuštění prototypu (bez instalace)
-
-Prototyp je vytvořen tak, aby fungoval **zcela samostatně bez nutnosti instalace jakéhokoliv balíčku či spouštění serveru**:
-1. Otevřete soubor `index.html` v libovolném moderním webovém prohlížeči (Google Chrome, Mozilla Firefox, Microsoft Edge, Safari).
-2. Data se načítají z lokálního skriptu `js/data.js` (záloha pro `file://` protokol) a jsou synchronní se souborem `data.json`.
-3. Pro testování mobilního zobrazení stačí zapnout vývojářské nástroje v prohlížeči (klávesa `F12` -> ikona mobilního zařízení) nebo stránku otevřít na smartphonu.
+Stačí otevřít `prototype/index.html` v moderním prohlížeči. Prototyp nevyžaduje instalaci, build ani lokální server.

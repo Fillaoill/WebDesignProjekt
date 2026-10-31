@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="INTERFACE 2026 – festival hudby, digitálního umění a kreativních technologií.">
+  <title>INTERFACE 2026</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#program">Přejít na program</a>
+  <header class="header">
+    <a class="brand" href="#uvod" aria-label="INTERFACE 2026 – úvod">INTERFACE<span>2026</span></a>
+    <nav class="nav" aria-label="Hlavní navigace">
+      <a href="#program">Program</a><a href="#lineup">Line-up</a><a href="#sceny">Scény</a><a href="#info">Info</a>
+    </nav>
+    <button class="mobile-menu-toggle" type="button" data-toggle-mobile-menu aria-expanded="false" aria-controls="mobile-menu"><span aria-hidden="true">☰</span> Menu</button>
+    <button class="saved-button" type="button" data-open-saved><span aria-hidden="true">☆</span> Můj program <b data-saved-count>0</b></button>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobilní menu"><a href="#program"><span aria-hidden="true">◷</span> Program</a><a href="#lineup"><span aria-hidden="true">⌕</span> Line-up</a><a href="#sceny"><span aria-hidden="true">⌖</span> Scény</a><a href="#info"><span aria-hidden="true">ⓘ</span> Praktické info</a></nav>
+  </header>
+
+  <main>
+    <section id="uvod" class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">11—13 / 09 / 2026 · Výstaviště Praha</p>
+        <h1>Zvuk.<br><i>Světlo.</i><br>Kód.</h1>
+        <p class="lead">Tři dny progresivní elektroniky, audiovizuálních performancí a tvůrčích laboratoří.</p>
+        <div class="actions"><a class="button primary" href="#program"><span aria-hidden="true">↘</span> Prozkoumat program</a><a class="button secondary" href="#lineup"><span aria-hidden="true">♪</span> Poslechnout line-up →</a></div>
+      </div>
+      <aside class="festival-signature" aria-label="Festivalové informace"><span class="edition">04. ročník</span><strong>INTERFACE <em>2026</em></strong><span class="tagline">Hudba × digitální umění × kreativní technologie</span></aside>
+    </section>
+
+    <section id="program" class="section programme">
+      <div class="section-heading"><div><p class="eyebrow">01 / Program</p><h2>Sestav si svůj rytmus.</h2></div><p id="program-count" class="count" aria-live="polite"></p></div>
+      <div class="filters" aria-label="Filtrování programu">
+        <fieldset><legend>Den</legend><div class="pills" id="day-filters"><button class="pill active" data-day="all">Vše</button><button class="pill" data-day="1">Pá 11/09</button><button class="pill" data-day="2">So 12/09</button><button class="pill" data-day="3">Ne 13/09</button></div></fieldset>
+        <label>Scéna<select id="stage-filter"><option value="all">Všechny scény</option></select></label>
+        <label>Typ<select id="type-filter"><option value="all">Všechny typy</option></select></label>
+        <label class="search-label">Hledat v programu<input id="program-search" type="search" placeholder="Interpret, workshop…"></label>
+      </div>
+      <div id="programme-list" class="programme-list"></div>
+      <button id="show-more" class="button outline" type="button"><span aria-hidden="true">↓</span> Zobrazit další položky</button>
+    </section>
+
+    <section id="lineup" class="section lineup">
+      <div class="section-heading"><div><p class="eyebrow">02 / Účinkující</p><h2>60 hlasů budoucnosti.</h2></div></div>
+      <div class="lineup-tools"><label class="search-label">Hledat účinkujícího<input id="performer-search" type="search" placeholder="Jméno, role, země…"></label><div class="pills" id="category-filters"><button class="pill active" data-category="all">Vše</button><button class="pill" data-category="Hudba & Live Acts">Hudba</button><button class="pill" data-category="Audiovizuální umění">AV art</button><button class="pill" data-category="Kreativní kód & Algorave">Kód</button></div></div>
+      <div id="performer-list" class="performer-grid"></div>
+    </section>
+
+    <section id="sceny" class="section stages"><div class="section-heading"><div><p class="eyebrow">03 / Scény</p><h2>Tři prostory. Jedna frekvence.</h2></div></div><div id="stage-list" class="stage-grid"></div></section>
+    <section id="info" class="section info"><p class="eyebrow">04 / Praktické informace</p><div class="info-grid"><div><h2>Výstaviště<br>Holešovice</h2><p>Výstaviště 67, Praha 7. Vstup do areálu od 14:00, noční program do 01:00.</p></div><div><h3>Doprava</h3><p>Tram: Výstaviště Praha<br>Metro C: Nádraží Holešovice</p><h3>Bezpečí & přístupnost</h3><p>Bezbariérový přístup, Safe Space a zdravotní služba jsou v areálu po celou dobu festivalu.</p></div><div><h3>Vstupenky</h3><p>Festival Pass · Víkend · Jednodenní · Studentské vstupné</p><a class="button primary" href="#program"><span aria-hidden="true">→</span> Vybrat program</a></div></div></section>
+  </main>
+
+  <nav class="mobile-nav" aria-label="Mobilní navigace"><a href="#program"><span aria-hidden="true">◷</span> Program</a><a href="#lineup"><span aria-hidden="true">⌕</span> Line-up</a><button type="button" data-open-saved><span aria-hidden="true">☆</span> Můj program <b data-saved-count>0</b></button></nav>
+  <dialog id="detail-dialog" class="dialog"><button class="close" type="button" data-close-dialog aria-label="Zavřít">×</button><div id="dialog-content"></div></dialog>
+  <dialog id="saved-dialog" class="dialog"><button class="close" type="button" data-close-saved aria-label="Zavřít">×</button><div id="saved-content"></div></dialog>
+  <template id="toast-template"><div class="toast" role="status"></div></template>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
