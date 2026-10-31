@@ -129,7 +129,7 @@ INTERFACE 2026 (Web)
   2. Zvolí záložku **Den 1 (Pátek)** a zapne filtr scény **Sound & Live Stage**.
   3. U vystoupení od 20:00 klikne na ikonu *Přehrát ukázku* – ve spodní části webu se spustí audio náhled tracku.
   4. Hudba se jí líbí, klikne na detail interpreta, kde si přečte bio a zhlédne ukázku živé pódiové show.
-  5. Viktorii to navdnadí na návstěvu festivalu.
+  5. Viktorii to navnadí na návštěvu festivalu.
 
 ---
 
