@@ -30,7 +30,9 @@ Kontrolováno je také mobilní rozvržení od šířky 320 px, desktopové rozv
 
 ## 4. Použití AI a ověření výstupů
 
-AI byla použita jako pomoc při návrhu informační hierarchie, formulaci textů, návrhu HTML/CSS/JavaScriptu a kontrole konzistence dat. Výstupy byly ověřeny vůči `project-specification.md` a `data.json`: festival má tři dny, tři scény, 60 účinkujících a 60 programových položek. Ručně byla kontrolována funkčnost filtrů, vyhledávání, detailů, ukládání voleb a rezervačního toku. Žádná externí tvrzení ani neověřená reálná data nebyla do návrhu doplňována.
+Při práci v týmu jsme AI využívali jako konzultační a pomocný nástroj. Nejdříve jsme sami vycházeli z projektové specifikace a datové základny, stanovili prioritní obrazovky i interaktivní funkce a průběžně jsme rozhodovali o výsledném návrhu. AI nám pomáhala porovnat varianty informační hierarchie, zpřesnit formulace textů, navrhnout dílčí řešení v HTML/CSS/JavaScriptu a upozornit na možné nekonzistence.
+
+Každý použitý návrh jsme následně upravili podle vlastního rozhodnutí a ověřili v prototypu. Zkontrolovali jsme shodu s `project-specification.md` a `data.json` — festival obsahuje tři dny, tři scény, 60 účinkujících a 60 programových položek. Ručně jsme prošli filtry, vyhledávání, detaily, ukládání do Mého programu, rezervační tok i mobilní navigaci. Do návrhu jsme nepřebírali žádná externí tvrzení ani neověřená reálná data.
 
 ## 5. Spuštění
 
