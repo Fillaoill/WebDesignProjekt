@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Line-up festivalu INTERFACE 2026 – hudba, audiovizuální umění a kreativní kód.">
+  <title>Line-up · INTERFACE 2026</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#lineup">Přejít na line-up</a>
+  <div class="header-shell">
+    <header class="header">
+      <a class="brand" href="index.html" aria-label="INTERFACE 2026 – úvod">INTERFACE<span>2026</span></a>
+      <nav class="nav" aria-label="Hlavní navigace">
+        <a href="index.html#program">Program</a><a href="lineup.html" aria-current="page">Line-up</a><a href="index.html#sceny">Scény</a><a href="index.html#info">Info</a>
+      </nav>
+      <button class="mobile-menu-toggle" type="button" data-toggle-mobile-menu aria-expanded="false" aria-controls="mobile-menu"><span aria-hidden="true">☰</span> Menu</button>
+      <button class="saved-button" type="button" data-open-saved><span aria-hidden="true">☆</span> Můj program <b data-saved-count>0</b></button>
+      <nav class="mobile-menu" id="mobile-menu" aria-label="Mobilní menu"><a href="index.html#program"><span aria-hidden="true">◷</span> Program</a><a href="lineup.html" aria-current="page"><span aria-hidden="true">⌕</span> Line-up</a><a href="index.html#sceny"><span aria-hidden="true">⌖</span> Scény</a><a href="index.html#info"><span aria-hidden="true">ⓘ</span> Praktické info</a><button class="mobile-menu-action" type="button" data-open-saved><span aria-hidden="true">☆</span> Můj program <b data-saved-count>0</b></button></nav>
+    </header>
+  </div>
+
+  <main>
+    <section id="lineup" class="section lineup">
+      <div class="section-heading"><div><p class="eyebrow">INTERFACE 2026 / Účinkující</p><h1>60 hlasů budoucnosti.</h1></div></div>
+      <p class="lead lineup-lead">Objevte hudebníky, audiovizuální umělce a kreativní kodéry, kteří utvářejí letošní ročník.</p>
+      <div class="lineup-tools"><label class="search-label">Hledat účinkujícího<input id="performer-search" type="search" placeholder="Jméno, role, země…" autocomplete="off"></label><div class="pills" id="category-filters"><button class="pill active" type="button" data-category="all">Vše</button><button class="pill" type="button" data-category="Hudba & Live Acts">Hudba</button><button class="pill" type="button" data-category="Audiovizuální umění">AV art</button><button class="pill" type="button" data-category="Kreativní kód & Algorave">Kód</button></div><button id="lineup-filter-reset" class="filter-reset" type="button" hidden>Zrušit filtry</button></div>
+      <div id="performer-list" class="performer-grid"></div>
+    </section>
+  </main>
+
+  <dialog id="detail-dialog" class="dialog"><button class="close" type="button" data-close-dialog aria-label="Zavřít">×</button><div id="dialog-content"></div></dialog>
+  <dialog id="saved-dialog" class="dialog"><button class="close" type="button" data-close-saved aria-label="Zavřít">×</button><div id="saved-content"></div></dialog>
+  <template id="toast-template"><div class="toast" role="status"></div></template>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
