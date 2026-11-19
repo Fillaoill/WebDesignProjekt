@@ -14,6 +14,7 @@
   let programmeLimit = 9;
   const programmeState = { day: 'all', stage: 'all', type: 'all', search: '' };
   const lineupState = { category: 'all', search: '' };
+  let preview = null;
 
   const displayDate = day => ['Pátek 11. 9.', 'Sobota 12. 9.', 'Neděle 13. 9.'][day - 1];
   const escape = value => String(value).replace(/[&<>"]/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[char]));
@@ -64,10 +65,40 @@
   }
   function openDialog(html) { const dialog = $('#detail-dialog'); $('#dialog-content').innerHTML = html; dialog.showModal(); }
   function eventDetail(id) {
+    stopPreview();
     const event = data.schedule.find(item => item.id === id); if (!event) return;
     const person = eventPerformer(event), availability = event.capacity ? event.capacity - (reservations[id] || 0) : null;
+    const isSaved = saved.has(event.id);
     const registration = event.type.includes('Workshop') ? `<form data-reservation="${id}"><h3>Rezervace workshopu</h3><p>${availability} volných míst z ${event.capacity}. Vezměte si vlastní sluchátka.</p><label>Jméno<input required name="name" autocomplete="name"></label><label>E-mail<input required type="email" name="email" autocomplete="email"></label><button class="button primary" ${availability < 1 ? 'disabled' : ''}><span aria-hidden="true">✓</span> ${availability < 1 ? 'Kapacita je naplněna' : 'Rezervovat místo'}</button></form>` : '';
-    openDialog(`<p class="eyebrow">${displayDate(event.day)} · ${event.startTime} · ${escape(stageById[event.stageId].name)}</p><h2>${escape(event.title)}</h2><p class="tags">${event.tags.map(escape).join(' · ')}</p><p>${escape(event.description)}</p><p><b>Účinkující:</b> <button class="text-button" data-detail-person="${person.id}">${escape(person.name)}</button></p><button class="button outline" type="button" data-save="${event.id}"><span aria-hidden="true">${saved.has(event.id) ? '×' : '☆'}</span> ${saved.has(event.id) ? 'Odebrat z Mého programu' : 'Přidat do Mého programu'}</button>${registration}`);
+    openDialog(`<p class="eyebrow">${displayDate(event.day)} · ${event.startTime} · ${escape(stageById[event.stageId].name)}</p><h2>${escape(event.title)}</h2><p class="tags">${event.tags.map(escape).join(' · ')}</p><p>${escape(event.description)}</p><p><b>Účinkující:</b> <button class="text-button" data-detail-person="${person.id}">${escape(person.name)}</button></p><button class="button outline${isSaved ? ' is-saved' : ''}" type="button" data-save="${event.id}"><span aria-hidden="true">${isSaved ? '★' : '☆'}</span> ${isSaved ? 'Odebrat z Mého programu' : 'Přidat do Mého programu'}</button>${registration}`);
+  }
+  function paintSaveButton(button, isSaved) {
+    if (button.closest('#saved-dialog')) return;
+    if (button.classList.contains('mini-button')) {
+      button.innerHTML = `<span aria-hidden="true">${isSaved ? '★' : '☆'}</span> ${isSaved ? 'Uloženo' : 'Uložit'}`;
+      return;
+    }
+    button.classList.toggle('is-saved', isSaved);
+    button.innerHTML = `<span aria-hidden="true">${isSaved ? '★' : '☆'}</span> ${isSaved ? 'Odebrat z Mého programu' : 'Přidat do Mého programu'}`;
+  }
+  function syncSaveButtons(id) {
+    const isSaved = saved.has(id);
+    $$(`[data-save="${id}"]`).forEach(button => paintSaveButton(button, isSaved));
+  }
+  function setPreviewButton(button, playing) {
+    if (!button) return;
+    button.classList.toggle('is-playing', playing);
+    button.setAttribute('aria-pressed', String(playing));
+    button.innerHTML = playing ? '<span aria-hidden="true">■</span> Zastavit náhled' : '<span aria-hidden="true">▷</span> Poslechnout náhled';
+  }
+  function stopPreview() {
+    if (!preview) return;
+    clearTimeout(preview.timer);
+    preview.oscillators.forEach(oscillator => { try { oscillator.stop(); } catch (error) { /* už skončil */ } });
+    preview.context.close();
+    const button = $(`[data-play="${preview.id}"]`);
+    preview = null;
+    setPreviewButton(button, false);
   }
   function playPreview(person) {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -78,10 +109,13 @@
       'Kreativní kód & Algorave': { wave: 'square', notes: [0, 3, 7, 10, 7, 3], step: .22, duration: .18, gain: .032, base: 98 },
       'Zvukový hardware & Syntéza': { wave: 'sine', notes: [0, 5, 7, 12, 7], step: .36, duration: .32, gain: .075, base: 82 }
     };
+    if (preview?.id === person.id) { stopPreview(); toast(`Náhled zastaven: ${person.name}`); return; }
+    stopPreview();
     const style = styles[person.category] || styles['Hudba & Live Acts'];
     const variation = (Number(person.id.slice(-2)) || 1) % 6;
     const context = new AudioContext();
     const start = context.currentTime + .03;
+    const oscillators = [];
     void context.resume();
 
     style.notes.forEach((note, index) => {
@@ -97,13 +131,20 @@
       oscillator.connect(gain).connect(context.destination);
       oscillator.start(time);
       oscillator.stop(time + style.duration + .03);
+      oscillators.push(oscillator);
     });
+    const button = $(`[data-play="${person.id}"]`);
+    setPreviewButton(button, true);
+    const length = (style.notes.length * style.step + .08) * 1000;
+    preview = { id: person.id, context, oscillators, timer: setTimeout(() => { if (preview?.id !== person.id) return; preview.context.close(); preview = null; setPreviewButton($(`[data-play="${person.id}"]`), false); }, length) };
     toast(`Přehrává se zvukový náhled: ${person.name}`);
   }
   function personDetail(id) {
+    if (preview && preview.id !== id) stopPreview();
     const person = byId[id]; if (!person) return;
     const appearances = data.schedule.filter(event => event.performerIds.includes(id)).sort((a,b) => a.date.localeCompare(b.date) || a.startTime.localeCompare(b.startTime));
-    openDialog(`<p class="eyebrow">${escape(person.category)} · ${escape(person.country)}</p><h2>${escape(person.name)}</h2><p>${escape(person.bio)}</p><p><b>${escape(person.role)}</b></p><button class="button primary" type="button" data-play="${person.id}"><span aria-hidden="true">▷</span> Poslechnout náhled</button><h3>Vystoupení na festivalu</h3>${appearances.map(event => `<p><button class="text-button" data-detail-event="${event.id}"><span aria-hidden="true">→</span> ${displayDate(event.day)} · ${event.startTime} — ${escape(event.title)}</button></p>`).join('')}`);
+    const playing = preview?.id === person.id;
+    openDialog(`<p class="eyebrow">${escape(person.category)} · ${escape(person.country)}</p><h2>${escape(person.name)}</h2><p>${escape(person.bio)}</p><p><b>${escape(person.role)}</b></p><button class="button primary${playing ? ' is-playing' : ''}" type="button" data-play="${person.id}" aria-pressed="${playing}"><span aria-hidden="true">${playing ? '■' : '▷'}</span> ${playing ? 'Zastavit náhled' : 'Poslechnout náhled'}</button><h3>Vystoupení na festivalu</h3>${appearances.map(event => `<p><button class="text-button" data-detail-event="${event.id}"><span aria-hidden="true">→</span> ${displayDate(event.day)} · ${event.startTime} — ${escape(event.title)}</button></p>`).join('')}`);
   }
   function openSaved() {
     const chosen = data.schedule.filter(event => saved.has(event.id)).sort((a,b) => a.date.localeCompare(b.date) || a.startTime.localeCompare(b.startTime));
@@ -114,7 +155,7 @@
   function toggleSaved(id) {
     saved.has(id) ? saved.delete(id) : saved.add(id);
     store();
-    renderProgramme();
+    syncSaveButtons(id);
     if ($('#saved-dialog').open) openSaved();
     toast(saved.has(id) ? 'Přidáno do Mého programu.' : 'Odebráno z Mého programu.');
   }
@@ -165,5 +206,7 @@
   if (performerSearch) performerSearch.addEventListener('input', event => { lineupState.search = event.target.value; renderPerformers(); });
   $$('#mobile-menu a').forEach(link => link.addEventListener('click', closeMobileMenu));
   document.addEventListener('submit', event => { const form = event.target.closest('form[data-reservation]'); if (!form) return; event.preventDefault(); const id = form.dataset.reservation; reservations[id] = (reservations[id] || 0) + 1; saved.add(id); store(); $('#detail-dialog').close(); renderProgramme(); toast('Rezervace potvrzena. Workshop je uložen v Mém programu.'); });
+  const detailDialog = $('#detail-dialog');
+  if (detailDialog) detailDialog.addEventListener('close', stopPreview);
   populateFilters(); renderProgramme(); renderPerformers(); renderStages(); updateSavedCount();
 })();
